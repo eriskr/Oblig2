@@ -9,7 +9,7 @@ import java.util.Random;
 import no.hvl.dat102.exception.EmptyCollectionException;
 import no.hvl.dat102.mengde.adt.MengdeADT;
 
-public class KjedetMengde<T> implements MengdeADT<T> {
+public class KjedetMengde<T> implements MengdeADT<T>, Iterable<T> {
 	private static Random rand = new Random();
 	private int antall; // antall elementer i mengden
 	private LinearNode<T> start;
@@ -80,7 +80,7 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 			resultat = start.getElement();
 			start = start.getNeste();
 			antall--;
-		} else {// Gjennomgår den kjedete strukturen
+		} else {// Gjennomgï¿½r den kjedete strukturen
 			forgjenger = start;
 			aktuell = start.getNeste();
 			for (int sok = 2; sok <= antall && !funnet; sok++) {
@@ -114,8 +114,8 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 		return funnet;
 	}
 	/*
-	 * Når vi overkjører (ovverride) equals- meteoden er det anbefalt at vi også
-	 * overkjører hashcode-metoden da en del biblioteker bruker hascode sammen med
+	 * Nï¿½r vi overkjÃ¸rer (ovverride) equals- meteoden er det anbefalt at vi ogsï¿½
+	 * overkjï¿½rer hashcode-metoden da en del biblioteker bruker hascode sammen med
 	 * equals. Vi kommer tilbake til forklaring og bruk av hashcode senere i faget.
 	 */
 
@@ -171,10 +171,9 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 
 	@Override
 	public MengdeADT<T> union(MengdeADT<T> m2) {
-		// TODO
-		MengdeADT<T> begge = new KjedetMengde<T>();
+		MengdeADT<T> begge = new KjedetMengde<>();
 		LinearNode<T> aktuell = start;
-		T element = null;
+		T element;
 
 		while (aktuell != null) {// ubetinget innsetting
 			((KjedetMengde<T>) begge).settInn(aktuell.getElement());
@@ -194,41 +193,47 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 
 	@Override
 	public MengdeADT<T> snitt(MengdeADT<T> m2) {
-		// TODO
-		MengdeADT<T> snittM = new KjedetMengde<T>();
-		T element;
-		/*
-		 * ..
-		 * 
-		 * if (this.inneholder(element)) ((KjedetMengde<T>) snittM).settInn(element);
-		 */
+		MengdeADT<T> snittM = new KjedetMengde<>();
+
+		for (T el1 : this) {
+			for (T el2 : (KjedetMengde<T>) m2) {
+				if (el1.equals(el2)) {
+					((KjedetMengde<T>) snittM).settInn(el1);
+				}
+			}
+		}
+
 		return snittM;
 	}
 
 	@Override
 	public MengdeADT<T> differens(MengdeADT<T> m2) {
-		// TODO
-		MengdeADT<T> differensM = new KjedetMengde<T>();
-		T element;
-		/*
-		 * Fyll ut
-		 * 
-		 */
+		MengdeADT<T> differensM = new KjedetMengde<>();
+
+		for (T el1 : this) {
+			for (T el2 : (KjedetMengde<T>) m2) {
+				if (!el1.equals(el2)) {
+					((KjedetMengde<T>) differensM).settInn(el1);
+				}
+			}
+		}
 
 		return differensM;
 	}
 
 	@Override
 	public boolean undermengde(MengdeADT<T> m2) {
-		// TODO
-		boolean erUnderMengde = true;
-		// ...
-		return erUnderMengde;
+		for (T el : (KjedetMengde<T>) m2) {
+			if (!inneholder(el)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	@Override
 	public Iterator<T> oppramser() {
-		return new KjedetIterator<T>(start);
+		return iterator();
 	}
 
 	private void settInn(T element) {
@@ -238,4 +243,8 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 		antall++;
 	}
 
+	@Override
+	public Iterator<T> iterator() {
+		return new KjedetIterator<>(start);
+	}
 }// class

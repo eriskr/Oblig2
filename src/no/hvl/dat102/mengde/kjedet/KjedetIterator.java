@@ -3,7 +3,7 @@ package no.hvl.dat102.mengde.kjedet;
 //****************************************************************
 
 //    Representerer en iterator for en kjedet struktur av noder 
-//    kjedet lineært. 
+//    kjedet lineÃ¦rt.
 //****************************************************************
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -41,7 +41,7 @@ public class KjedetIterator<T> implements Iterator<T> {
 
 	@Override
 	public T next() {
-		T resultat = null;
+		T resultat;
 		if (!hasNext())
 			throw new NoSuchElementException();
 		resultat = aktuell.getElement();
