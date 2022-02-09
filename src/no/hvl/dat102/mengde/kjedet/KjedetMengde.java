@@ -130,7 +130,7 @@ public class KjedetMengde<T> implements MengdeADT<T>, Iterable<T> {
 
 	@Override
 	public boolean equals(Object ny) {
-		// TODO
+
 		if (this == ny) {
 			return true;
 		}
@@ -210,11 +210,9 @@ public class KjedetMengde<T> implements MengdeADT<T>, Iterable<T> {
 	public MengdeADT<T> differens(MengdeADT<T> m2) {
 		MengdeADT<T> differensM = new KjedetMengde<>();
 
-		for (T el1 : this) {
-			for (T el2 : (KjedetMengde<T>) m2) {
-				if (!el1.equals(el2)) {
-					((KjedetMengde<T>) differensM).settInn(el1);
-				}
+		for (T el : this) {
+			if (!m2.inneholder(el)) {
+				((KjedetMengde<T>) differensM).settInn(el);
 			}
 		}
 
@@ -237,7 +235,7 @@ public class KjedetMengde<T> implements MengdeADT<T>, Iterable<T> {
 	}
 
 	private void settInn(T element) {
-		LinearNode<T> nyNode = new LinearNode<T>(element);
+		LinearNode<T> nyNode = new LinearNode<>(element);
 		nyNode.setNeste(start);
 		start = nyNode;
 		antall++;

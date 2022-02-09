@@ -1,12 +1,13 @@
-package no.hv.dat102.mengde.klient;
+package no.hvl.dat102.mengde.klient;
 
 import no.hvl.dat102.mengde.adt.MengdeADT;
 import no.hvl.dat102.mengde.kjedet.KjedetMengde;
+import no.hvl.dat102.mengde.klient.Bingokule;
 
 public class KlientBingo {
 	// Oppretter 2 mengder med 75 bingokuler i hver.
 	// Tester om en spesiell bingokule er med i den ene mengden,
-	// og om de to mengdene er nøyaktig like.
+	// og om de to mengdene er nï¿½yaktig like.
 
 	public static void main(String[] args) {
 		final int ANTALL_BALLER = 75;

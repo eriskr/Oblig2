@@ -90,14 +90,13 @@ public interface MengdeADT<T> {
 	 */
 
 	MengdeADT<T> differens(MengdeADT<T> m2);
-	
-	
+
 	/**
 	 * 
 	 * @param m2 er parametermengden
 	 * @return true hvis m2 er en undermengde av denne mengden, ellers false
 	 */
-	public boolean undermengde(MengdeADT<T> m2);
+	boolean undermengde(MengdeADT<T> m2);
 
 	/**
 	 * Oppretter et 'oppramsobjekt' som kan brukes til � gjennomg� alle

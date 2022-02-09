@@ -104,7 +104,7 @@ public class TabellMengde<T> implements MengdeADT<T>, Iterable<T> {
 	}
 	
 	/*
-	 * Når vi overkjører (override) equals- meteoden er det anbefalt at vi ogs�
+	 * Når vi overkjører (override) equals- meteoden er det anbefalt at vi også
 	 * overkjører hascode-metoden da en del biblioterker burker hascode sammen med
 	 * equals. Vi kommer tilbake til forklaring og bruk av hascode senere i faget.
 	 */
@@ -121,8 +121,8 @@ public class TabellMengde<T> implements MengdeADT<T>, Iterable<T> {
 	public boolean equals(Object m2) {
 
 		if (this == m2){
-        			return true;
-        		}
+			return true;
+		}
 
 		if (m2 == null){
 			return false;
