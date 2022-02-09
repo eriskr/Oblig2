@@ -206,24 +206,44 @@ public class TabellMengde<T> implements MengdeADT<T>, Iterable<T> {
 
 	@Override
 	public MengdeADT<T> differens(MengdeADT<T> m2) {
-		//TODO
-		MengdeADT<T> differensM = new TabellMengde<T>();
-		T element;
-		/*
-		 * Fyll ut
-		 * 
-		 * if (!m2.inneholder(element)) ((TabellMengde<T>) differensM).settInn(element);
-		 */
+
+		MengdeADT<T> differensM = new TabellMengde<>();
+
+		for (T i : this){
+
+				if (!m2.inneholder(i)){
+					((TabellMengde<T>) differensM).settInn(i);
+				}
+
+			}
 
 		return differensM;
+
+		/*
+		Iterator<T> m2teller = m2.oppramser();
+
+		while (m2teller.hasNext()){
+			T element = m2teller.next();
+			if (!inneholder(element)) {
+				differensM.settInn(element);
+			}
+		}
+
+		return differensM;
+		 */
 	}
 
 	@Override
 	public boolean undermengde(MengdeADT<T> m2) {
-		//TODO
-		boolean erUnderMengde = true;
-		// ...
-		return false;
+
+		Iterator<T> m2teller = m2.oppramser();
+
+		while (m2teller.hasNext()) {
+			if (!inneholder(m2teller.next())) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	@Override
