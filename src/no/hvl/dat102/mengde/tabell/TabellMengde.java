@@ -25,6 +25,10 @@ public class TabellMengde<T> implements MengdeADT<T>, Iterable<T> {
 		tab = (T[]) (new Object[start]);
 	}
 
+	public T[] getTab () {
+		return tab;
+	}
+
 	@Override
 	public int antall() {
 		return antall;
@@ -262,5 +266,20 @@ public class TabellMengde<T> implements MengdeADT<T>, Iterable<T> {
 	@Override
 	public Iterator<T> iterator() {
 		return new TabellIterator<>(tab, antall);
+	}
+
+	@Override
+	public String toString(){
+
+		String resultat = "<";
+
+		for (int i = 0; i < antall; i++) {
+			resultat += tab[i].toString();
+			if (i < antall-1) {
+				resultat += ", ";
+			}
+		}
+		resultat += ">";
+		return resultat;
 	}
 }// class

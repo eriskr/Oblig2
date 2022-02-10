@@ -46,7 +46,7 @@ public class KjedetMengde<T> implements MengdeADT<T>, Iterable<T> {
 			throw new EmptyCollectionException("mengde");
 
 		LinearNode<T> forgjenger, aktuell;
-		T resultat = null;
+		T resultat;
 
 		int valg = rand.nextInt(antall) + 1;
 		if (valg == 1) {
@@ -87,7 +87,8 @@ public class KjedetMengde<T> implements MengdeADT<T>, Iterable<T> {
 				if (aktuell.getElement().equals(element))
 					funnet = true;
 				else {
-					forgjenger = aktuell.getNeste();
+					forgjenger = forgjenger.getNeste();
+					aktuell = aktuell.getNeste();
 				}
 			}
 			if (funnet) {
@@ -244,5 +245,22 @@ public class KjedetMengde<T> implements MengdeADT<T>, Iterable<T> {
 	@Override
 	public Iterator<T> iterator() {
 		return new KjedetIterator<>(start);
+	}
+
+
+	public String toString(){
+
+		String resultat = "<";
+
+		LinearNode<T> aktuell = start;
+		while(aktuell != null) {
+			resultat += aktuell.getElement().toString();
+			if (aktuell.getNeste() != null) {
+				resultat += ", ";
+			}
+			aktuell = aktuell.getNeste();
+		}
+		resultat += ">";
+		return resultat;
 	}
 }// class
