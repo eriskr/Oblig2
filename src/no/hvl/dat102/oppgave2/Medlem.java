@@ -32,7 +32,7 @@ public class Medlem {
     public boolean passerTil(Medlem medlem2) {
 
         if (hobbyer.antall() != medlem2.hobbyer.antall() ||
-                (statusIndeks == -1 && medlem2.statusIndeks == -1)) {
+                (statusIndeks != -1 && medlem2.statusIndeks != -1)) {
             return false;
         }
 
@@ -62,6 +62,10 @@ public class Medlem {
 
     public int getStatusIndeks () {
         return statusIndeks;
+    }
+
+    public void setHobbyer(MengdeADT<Hobby> hobbyer) {
+        this.hobbyer = hobbyer;
     }
 
     public MengdeADT<Hobby> getHobbyer() {

@@ -56,12 +56,15 @@ public class Datakontakt {
 
     public void tilbakestillStatusIndeks(String medlemsnavn) {
         int m1 = finnMedlemsIndeks(medlemsnavn);
-        Medlem [] tab = medlemmer.getTab();
         if (m1 != -1) {
-            int m2 = tab[m1].getStatusIndeks();
-            tab[m1].setStatusIndeks(-1);
-            tab[m2].setStatusIndeks(-1);
+            int m2 = medlemmer.getElement(m1).getStatusIndeks();
+            medlemmer.getElement(m1).setStatusIndeks(-1);
+            medlemmer.getElement(m2).setStatusIndeks(-1);
         }
+    }
+
+    public TabellMengde<Medlem> getMedlemmer() {
+        return medlemmer;
     }
 
     @Override
