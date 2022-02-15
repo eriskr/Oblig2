@@ -39,12 +39,12 @@ public class Tekstgrensesnitt {
         --------------------------------------------------
         Antall par funnet: 12
         */
-        System.out.println("PARNAVN\t\t\tHOBBYER");
+        System.out.printf("%s %20s %n", "PARNAVN", "HOBBYER");
 
-        for (Medlem m : arkiv.getMedlemmer()) {
+        for (Medlem m : arkiv.getMedlemmer()) { //TODO skriv ut bare en gang
             if (m.getStatusIndeks() != -1) {
-                System.out.print(m.getNavn() + " og ");
-                System.out.println(arkiv.getMedlemmer().getElement(m.getStatusIndeks()).getNavn());
+                System.out.print(m.getNavn() + " og " + arkiv.getMedlemmer().getElement(m.getStatusIndeks()).getNavn());
+                System.out.printf("%18s %n", m.getHobbyer());
             }
         }
 
