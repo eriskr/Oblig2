@@ -1,7 +1,7 @@
 package no.hvl.dat102.liste.listeklient;
 
 import no.hvl.dat102.adt.OrdnetListeADT;
-import no.hvl.dat102.kjedet.KjedetOrdnetListe;
+import no.hvl.dat102.liste.kjedet.KjedetOrdnetListe;
 
 import java.util.Scanner;
 

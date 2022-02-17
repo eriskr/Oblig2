@@ -1,7 +1,7 @@
 package no.hvl.dat102.liste.listeklient;
 
 import no.hvl.dat102.adt.OrdnetListeADT;
-import no.hvl.dat102.tabell.TabellOrdnetListe;
+import no.hvl.dat102.liste.tabell.TabellOrdnetListe;
 
 public class KlientPerson {
 
