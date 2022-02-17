@@ -2,6 +2,7 @@ package no.hvl.dat102.oppgave2;
 
 import no.hvl.dat102.mengde.adt.MengdeADT;
 import no.hvl.dat102.mengde.kjedet.KjedetMengde;
+import no.hvl.dat102.mengde.tabell.TabellMengde;
 
 import javax.swing.*;
 import java.util.Iterator;
@@ -40,12 +41,20 @@ public class Tekstgrensesnitt {
         Antall par funnet: 12
         */
         System.out.printf("%s %20s %n", "PARNAVN", "HOBBYER");
+        TabellMengde<Medlem> medlemmer = arkiv.getMedlemmer();
 
-        for (Medlem m : arkiv.getMedlemmer()) { //TODO skriv ut bare en gang
-            if (m.getStatusIndeks() != -1) {
-                System.out.print(m.getNavn() + " og " + arkiv.getMedlemmer().getElement(m.getStatusIndeks()).getNavn());
-                System.out.printf("%18s %n", m.getHobbyer());
+        int i = 0;
+        //Markerer posisjonen til de medlemmene som er skrevet ut
+        boolean[] skrevetUt = new boolean[arkiv.getMedlemmer().antall()];
+
+        for (Medlem m : medlemmer) {
+            int m2 = m.getStatusIndeks();
+
+            if (m2 != -1 && !skrevetUt[i]) {
+                System.out.printf("%s %18s %n", m.getNavn() + " og " + medlemmer.getElement(m2).getNavn(), m.getHobbyer());
+                skrevetUt[m2] = true;
             }
+            i++;
         }
 
         System.out.println("----------------------------------------------");
