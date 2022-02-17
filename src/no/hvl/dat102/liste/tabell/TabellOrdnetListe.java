@@ -3,11 +3,15 @@ package no.hvl.dat102.liste.tabell;
 import no.hvl.dat102.adt.OrdnetListeADT;
 import no.hvl.dat102.exception.EmptyCollectionException;
 
+/**
+ * Sorterer fra størst til minst
+ * @param <T> Elementtypen
+ */
 public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeADT<T> {
 
 	private final static int STDK = 100;
 	private final static int IKKE_FUNNET = -1;
-	private int bak;
+	private int antall;
 	private T[] liste;
 
 	public TabellOrdnetListe() {
@@ -15,7 +19,7 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 	}
 
 	public TabellOrdnetListe(int startKapasitet) {
-		bak = 0;
+		antall = 0;
 		liste = (T[]) (new Comparable[startKapasitet]);
 	}
 
@@ -24,8 +28,9 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 		if (erTom())
 			throw new EmptyCollectionException("ordnet liste");
 
-		T resultat = null;
-		// ... Fyll ut
+		T resultat = siste();
+		antall--;
+		liste[antall] = null;
 		return resultat;
 	}
 
@@ -34,8 +39,12 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 		if (erTom())
 			throw new EmptyCollectionException("ordnet liste");
 
-		T resultat = null;
-		// ... Fyll ut
+		T resultat = foerste();
+		antall--;
+		for (int i = 0; i < antall; i++) {
+			liste[i] = liste[i + 1];
+		}
+		liste[antall] = null;
 		return resultat;
 	}
 
@@ -44,35 +53,49 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 		if (erTom())
 			throw new EmptyCollectionException("ordnet liste");
 
-		T resultat = liste[0];
-		return resultat;
+		return liste[0];
 	}
 
 	@Override
 	public T siste() {
 		if (erTom())
 			throw new EmptyCollectionException("ordnet liste");
-		
-		T resultat = null;
-		// ...Fyll ut
 
-		return resultat;
+		return liste[antall - 1];
 	}
 
 	@Override
 	public boolean erTom() {
-		return (bak == 0);
+		return (antall == 0);
 	}
 
 	@Override
 	public int antall() {
-		return bak;
+		return antall;
 	}
 
 	@Override
 	public void leggTil(T element) {
-
-		// ...Fyll ut
+		if (antall == liste.length) {
+			utvid();
+		}
+		if (erTom()) {
+			liste[0] = element;
+		}
+		else {
+			boolean funnet = false;
+			for (int i = 0; i < antall && !funnet; i++) {
+				if (element.compareTo(liste[i]) >= 0) { //TODO Sjekk compareTo
+					//Flytter alle elementer fra indeks i, ett hakk til høyre
+					for (int j = antall - 1; j >= i; j--) {
+						liste[j + 1] = liste[j];
+					}
+					liste[i] = element;
+					funnet = true;
+				}
+			}
+		}
+		antall++;
 	}
 
 	@Override
@@ -81,22 +104,37 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 	}
 
 	@Override
-	public T fjern(T element) {
-		// ...Fyll ut
-		return element;
+	public T fjern(T el) {
+		int i = finn(el);
+
+		if (i != -1) {
+			for (int j = i; j < antall-1; j++) {
+				liste[j] = liste[j + 1];
+			}
+			antall--;
+			liste[antall] = null;
+			return el;
+		}
+		return null;
 
 	}
 
 	private int finn(T el) {
-		int i = 0, resultat = IKKE_FUNNET;
-		// ...Fyll ut
-		return resultat;
+		if (erTom()) {
+			throw new EmptyCollectionException("Ordnet liste");
+		}
+		for (int i = 0; i < antall; i++) {
+			if (liste[i].equals(el)) {
+				return i;
+			}
+		}
+		return IKKE_FUNNET;
 	}
 
 	public String toString() {
 		String resultat = "";
 
-		for (int i = 0; i < bak; i++) {
+		for (int i = 0; i < antall; i++) {
 			resultat = resultat + liste[i].toString() + "\n";
 		}
 		return resultat;

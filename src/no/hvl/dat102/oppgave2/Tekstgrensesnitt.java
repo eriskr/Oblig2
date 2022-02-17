@@ -12,7 +12,7 @@ public class Tekstgrensesnitt {
     public static Medlem lesMedlem() {
         String navn = JOptionPane.showInputDialog("Navn");
         MengdeADT<Hobby> hobbyer = new KjedetMengde<>();
-        String[] stringHobbyer = JOptionPane.showInputDialog("Hobbyer, skill med mellomrom").split("\\w");//TODO sjekk
+        String[] stringHobbyer = JOptionPane.showInputDialog("Hobbyer, skill med mellomrom").split("\\W");
 
         for (String s : stringHobbyer) {
             Hobby hobby = new Hobby(s);
@@ -20,6 +20,7 @@ public class Tekstgrensesnitt {
         }
         return new Medlem(navn, hobbyer);
     }
+
     // Skriver ut hobbylisten for et medlem
     public static void skrivHobbyListe(Medlem medlem) {
         System.out.println("Alle hobbyene ");
@@ -38,7 +39,7 @@ public class Tekstgrensesnitt {
      * --------------------------------------------------
      * Antall par funnet: 12
      */
-    public static void skrivParListe (Datakontakt arkiv) {
+    public static void skrivParListe(Datakontakt arkiv) {
         System.out.printf("%s %20s %n", "PARNAVN", "HOBBYER");
         TabellMengde<Medlem> medlemmer = arkiv.getMedlemmer();
 

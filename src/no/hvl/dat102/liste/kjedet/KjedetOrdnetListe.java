@@ -8,7 +8,7 @@ import java.util.IllformedLocaleException;
 import java.util.Iterator;
 
 /**
- * 
+ * Sorterer fra størst til minst
  * @param <T> elementypen
  */
 public class KjedetOrdnetListe<T extends Comparable<T>> implements OrdnetListeADT<T> {
