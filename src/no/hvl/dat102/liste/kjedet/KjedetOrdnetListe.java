@@ -4,6 +4,9 @@ import no.hvl.dat102.LinearNode;
 import no.hvl.dat102.adt.OrdnetListeADT;
 import no.hvl.dat102.exception.EmptyCollectionException;
 
+import java.util.IllformedLocaleException;
+import java.util.Iterator;
+
 /**
  * 
  * @param <T> elementypen
@@ -23,11 +26,12 @@ public class KjedetOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 
 	@Override
 	public T fjernFoerste() {
-		if (erTom())
-			throw new EmptyCollectionException("ordnet liste");
+		if (erTom()) throw new EmptyCollectionException("ordnet liste");
 
-		T resultat = null;
-		// ...Fyll ut
+
+		T resultat = foerste.getElement();
+		foerste = foerste.getNeste();
+		antall--;
 		return resultat;
 	}
 
@@ -36,8 +40,18 @@ public class KjedetOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 		if (erTom())
 			throw new EmptyCollectionException("ordnet liste");
 
-		T resultat = null;
-		// ...Fyll ut
+		T resultat = siste.getElement();
+
+		if (siste.equals(foerste)){
+			fjernFoerste();
+			return resultat;
+		}
+			LinearNode<T> node = foerste;
+		for (int i = 0; i < antall-2; i++) {
+			node = node.getNeste();
+		}
+		siste = node;
+
 		return resultat;
 	}
 
@@ -74,7 +88,21 @@ public class KjedetOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 	@Override
 	public void leggTil(T element) {
 
-		// ...Fyll ut
+		LinearNode<T> forrige = foerste;
+		LinearNode<T> node = foerste.getNeste();
+		LinearNode<T> ny = new LinearNode<>(element);
+
+		for (int i = 0; i < antall; i++) {
+			if (node.getElement().compareTo(element) <= 0) {
+				forrige.setNeste(ny);
+				ny.setNeste(node);
+				antall++;
+			}
+
+		}
+
+
+
 	}
 
 	@Override
