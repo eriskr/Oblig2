@@ -27,23 +27,23 @@ public class Tekstgrensesnitt {
         System.out.println(medlem.getHobbyer());
     }
 
+    /**
+     * skriver ut på skjermen en oversikt over medlemmer som er koblet
+     * til hverandre i medlemstabellen til enhver tid.
+     * Et slikt par skal kun vises én gang på utskriftlisten. Metoden
+     * skriver også ut antall par som er funnet.
+     * Eksempel på utskrift:
+     * PARNAVN             HOBBYER
+     * Erna og Jonas       <ski, musikk, politikk>
+     * Eva og Adam         <epleplukking, paradishopping>
+     * --------------------------------------------------
+     * Antall par funnet: 12
+     */
     public static void skrivParListe (Datakontakt arkiv) {
-        /*
-        skriver ut på skjermen en oversikt over medlemmer som er koblet
-        til hverandre i medlemstabellen til enhver tid.
-        Et slikt par skal kun vises én gang på utskriftlisten. Metoden
-        skriver også ut antall par som er funnet.
-        Eksempel på utskrift:
-        PARNAVN             HOBBYER
-        Erna og Jonas       <ski, musikk, politikk>
-        Eva og Adam         <epleplukking, paradishopping>
-        --------------------------------------------------
-        Antall par funnet: 12
-        */
         System.out.printf("%s %20s %n", "PARNAVN", "HOBBYER");
         TabellMengde<Medlem> medlemmer = arkiv.getMedlemmer();
 
-        int i = 0;
+        int i = 0, antallPar = 0;
         //Markerer posisjonen til de medlemmene som er skrevet ut
         boolean[] skrevetUt = new boolean[arkiv.getMedlemmer().antall()];
 
@@ -53,10 +53,11 @@ public class Tekstgrensesnitt {
             if (m2 != -1 && !skrevetUt[i]) {
                 System.out.printf("%s %18s %n", m.getNavn() + " og " + medlemmer.getElement(m2).getNavn(), m.getHobbyer());
                 skrevetUt[m2] = true;
+                antallPar++;
             }
             i++;
         }
-
-        System.out.println("----------------------------------------------");
+        System.out.println("----------------------------------------------\n" +
+                "Antall par funnet: " + antallPar);
     }
 }
