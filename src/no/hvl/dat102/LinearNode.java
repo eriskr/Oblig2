@@ -1,8 +1,8 @@
-package no.hvl.dat102.mengde.kjedet;
+package no.hvl.dat102;
 //  Representerer en node.
 //************************************************************
 
-class LinearNode<T>{
+public class LinearNode<T>{
   private LinearNode<T> neste;
   private T element;
  

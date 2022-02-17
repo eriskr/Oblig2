@@ -5,6 +5,8 @@ package no.hvl.dat102.mengde.kjedet;
 //    Representerer en iterator for en kjedet struktur av noder 
 //    kjedet lineært.
 //****************************************************************
+import no.hvl.dat102.LinearNode;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 

@@ -1,6 +1,6 @@
 package no.hv.dat102.mengde.klient;
 
-import no.hvl.dat102.mengde.adt.MengdeADT;
+import no.hvl.dat102.adt.MengdeADT;
 import no.hvl.dat102.mengde.kjedet.KjedetMengde;
 
 import java.util.Scanner;
@@ -14,7 +14,7 @@ public class Ordliste2 {
 
 		MengdeADT<String> ordListe1 = new KjedetMengde<String>();
 
-		String[] ord = { "God", "dag", "Hans", "Hansen", "Hansaby","Førde", "Olsen", "Ole", "buss", "rute", "Bergen" };
+		String[] ord = { "God", "dag", "Hans", "Hansen", "Hansaby","Fï¿½rde", "Olsen", "Ole", "buss", "rute", "Bergen" };
 
 		Scanner tastatur = new Scanner(System.in);
 		// Legger til ordene i mengden ordListe1

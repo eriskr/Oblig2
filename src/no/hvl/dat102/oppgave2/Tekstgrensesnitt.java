@@ -1,11 +1,10 @@
 package no.hvl.dat102.oppgave2;
 
-import no.hvl.dat102.mengde.adt.MengdeADT;
+import no.hvl.dat102.adt.MengdeADT;
 import no.hvl.dat102.mengde.kjedet.KjedetMengde;
 import no.hvl.dat102.mengde.tabell.TabellMengde;
 
 import javax.swing.*;
-import java.util.Iterator;
 
 public class Tekstgrensesnitt {
     //Hvis du vil lage meny, kan du også legge det inn i Tekstgrensesnitt

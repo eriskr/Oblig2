@@ -1,9 +1,6 @@
 package no.hvl.dat102.oppgave2;
-import no.hvl.dat102.mengde.adt.MengdeADT;
+import no.hvl.dat102.adt.MengdeADT;
 import no.hvl.dat102.mengde.kjedet.KjedetMengde;
-import no.hvl.dat102.oppgave2.Datakontakt;
-
-import javax.xml.crypto.Data;
 
 public class DatakontaktKlient {
     public static void main(String[] args) {

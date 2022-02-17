@@ -1,6 +1,5 @@
 package no.hvl.dat102.adt;
 
-import no.hvl.dat102.mengde.adt.MengdeADT;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

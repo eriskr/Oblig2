@@ -1,8 +1,7 @@
 package no.hvl.dat102.mengde.klient;
 
-import no.hvl.dat102.mengde.adt.MengdeADT;
+import no.hvl.dat102.adt.MengdeADT;
 import no.hvl.dat102.mengde.kjedet.KjedetMengde;
-import no.hvl.dat102.mengde.klient.Bingokule;
 
 public class KlientBingo {
 	// Oppretter 2 mengder med 75 bingokuler i hver.

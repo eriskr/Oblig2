@@ -6,8 +6,9 @@ package no.hvl.dat102.mengde.kjedet;
 import java.util.Iterator;
 import java.util.Random;
 
+import no.hvl.dat102.LinearNode;
 import no.hvl.dat102.exception.EmptyCollectionException;
-import no.hvl.dat102.mengde.adt.MengdeADT;
+import no.hvl.dat102.adt.MengdeADT;
 
 public class KjedetMengde<T> implements MengdeADT<T>, Iterable<T> {
 	private static Random rand = new Random();
