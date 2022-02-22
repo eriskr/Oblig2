@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.Random;
 
 import no.hvl.dat102.exception.EmptyCollectionException;
-import no.hvl.dat102.mengde.adt.MengdeADT;
+import no.hvl.dat102.adt.MengdeADT;
 import no.hvl.dat102.mengde.kjedet.KjedetMengde;
 
 public class TabellMengde<T> implements MengdeADT<T>, Iterable<T> {
@@ -104,7 +104,7 @@ public class TabellMengde<T> implements MengdeADT<T>, Iterable<T> {
 	}
 	
 	/*
-	 * Når vi overkjører (override) equals- meteoden er det anbefalt at vi ogs�
+	 * Når vi overkjører (override) equals- meteoden er det anbefalt at vi også
 	 * overkjører hascode-metoden da en del biblioterker burker hascode sammen med
 	 * equals. Vi kommer tilbake til forklaring og bruk av hascode senere i faget.
 	 */
@@ -121,8 +121,8 @@ public class TabellMengde<T> implements MengdeADT<T>, Iterable<T> {
 	public boolean equals(Object m2) {
 
 		if (this == m2){
-        			return true;
-        		}
+			return true;
+		}
 
 		if (m2 == null){
 			return false;
@@ -206,24 +206,44 @@ public class TabellMengde<T> implements MengdeADT<T>, Iterable<T> {
 
 	@Override
 	public MengdeADT<T> differens(MengdeADT<T> m2) {
-		//TODO
-		MengdeADT<T> differensM = new TabellMengde<T>();
-		T element;
-		/*
-		 * Fyll ut
-		 * 
-		 * if (!m2.inneholder(element)) ((TabellMengde<T>) differensM).settInn(element);
-		 */
+
+		MengdeADT<T> differensM = new TabellMengde<>();
+
+		for (T i : this){
+
+				if (!m2.inneholder(i)){
+					((TabellMengde<T>) differensM).settInn(i);
+				}
+
+			}
 
 		return differensM;
+
+		/*
+		Iterator<T> m2teller = m2.oppramser();
+
+		while (m2teller.hasNext()){
+			T element = m2teller.next();
+			if (!inneholder(element)) {
+				differensM.settInn(element);
+			}
+		}
+
+		return differensM;
+		 */
 	}
 
 	@Override
 	public boolean undermengde(MengdeADT<T> m2) {
-		//TODO
-		boolean erUnderMengde = true;
-		// ...
-		return false;
+
+		Iterator<T> m2teller = m2.oppramser();
+
+		while (m2teller.hasNext()) {
+			if (!inneholder(m2teller.next())) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	@Override
@@ -242,5 +262,28 @@ public class TabellMengde<T> implements MengdeADT<T>, Iterable<T> {
 	@Override
 	public Iterator<T> iterator() {
 		return new TabellIterator<>(tab, antall);
+	}
+
+	public T[] getTab () {
+		return tab;
+	}
+
+	public T getElement(int i) {
+		return tab[i];
+	}
+
+	@Override
+	public String toString(){
+
+		String resultat = "<";
+
+		for (int i = 0; i < antall; i++) {
+			resultat += tab[i].toString();
+			if (i < antall-1) {
+				resultat += ", ";
+			}
+		}
+		resultat += ">";
+		return resultat;
 	}
 }// class
