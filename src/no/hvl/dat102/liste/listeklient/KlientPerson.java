@@ -1,7 +1,10 @@
 package no.hvl.dat102.liste.listeklient;
 
 import no.hvl.dat102.adt.OrdnetListeADT;
+import no.hvl.dat102.liste.kjedet.KjedetOrdnetListe;
 import no.hvl.dat102.liste.tabell.TabellOrdnetListe;
+
+import javax.swing.*;
 
 public class KlientPerson {
 
@@ -21,8 +24,30 @@ public class KlientPerson {
 		while(!kjedetListe.erTom()) {
 			System.out.println(kjedetListe.fjernSiste());
 		}
-		
+		System.out.println();
 
+		while(!tabelListe.erTom()) {
+			System.out.println(tabelListe.fjernSiste());
+		}
+	}
+
+	private static Person lesInnPerson() {
+
+		String fornavn = JOptionPane.showInputDialog("Fornavn:");
+		String etternavn = JOptionPane.showInputDialog("Etternavn:");
+		int fodselsaar = 0;
+
+		boolean ok;
+		do {
+			ok = true;
+			try {
+				fodselsaar = Integer.parseInt(JOptionPane.showInputDialog("Fødselsår:"));
+			}
+			catch (NumberFormatException e) {
+				ok = false;
+			}
+		} while (!ok);
+		return new Person(fornavn, etternavn, fodselsaar);
 	}
 
 }
