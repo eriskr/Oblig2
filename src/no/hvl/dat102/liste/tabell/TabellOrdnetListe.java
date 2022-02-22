@@ -84,8 +84,8 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 		}
 		else {
 			boolean funnet = false;
-			for (int i = 0; i < antall; i++) {
-				if (element.compareTo(liste[i]) <= 0) {
+			for (int i = 0; i < antall && !funnet; i++) {
+				if (element.compareTo(liste[i]) < 0) {
 					//Flytter alle elementer fra indeks i, ett hakk til høyre
 					for (int j = antall - 1; j >= i; j--) {
 						liste[j + 1] = liste[j];
