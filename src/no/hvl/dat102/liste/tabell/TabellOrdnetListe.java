@@ -100,6 +100,7 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 
 	@Override
 	public boolean inneholder(T element) {
+
 		return (finn(element) != IKKE_FUNNET);
 	}
 
