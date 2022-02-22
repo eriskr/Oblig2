@@ -6,22 +6,20 @@ import no.hvl.dat102.liste.tabell.TabellOrdnetListe;
 public class KlientPerson {
 
 	public static void main(String[] args) {
+		
+		OrdnetListeADT<Person> kjedetListe = new KjedetOrdnetListe<>();
+		OrdnetListeADT<Person> tabelListe = new TabellOrdnetListe<>();
+		
+		kjedetListe.leggTil(lesInnPerson());
+		kjedetListe.leggTil(lesInnPerson());
+		kjedetListe.leggTil(lesInnPerson());
 
-		Person anne = new Person("Anne", "Iversen", 1996);
-		Person ole = new Person("Ole", "Vik", 1995);
-		Person bendik = new Person("Bendik", "Ness", 1997);
+		tabelListe.leggTil(lesInnPerson());
+		tabelListe.leggTil(lesInnPerson());
+		tabelListe.leggTil(lesInnPerson());
 		
-		OrdnetListeADT<Person> liste = new TabellOrdnetListe<Person>();
-		
-		liste.leggTil(anne);
-		liste.leggTil(ole);
-		liste.leggTil(bendik);
-		
-		Person person = null;
-		
-		while(!liste.erTom()) {
-			person = liste.fjernFoerste();
-			System.out.println(person);
+		while(!kjedetListe.erTom()) {
+			System.out.println(kjedetListe.fjernSiste());
 		}
 		
 
