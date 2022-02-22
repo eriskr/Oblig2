@@ -41,7 +41,7 @@ public class KlientPerson {
 		do {
 			ok = true;
 			try {
-				fodselsaar = Integer.parseInt(JOptionPane.showInputDialog("Fødselsår:"));
+				fodselsaar = Integer.parseInt(JOptionPane.showInputDialog("Fï¿½dselsï¿½r:"));
 			}
 			catch (NumberFormatException e) {
 				ok = false;
