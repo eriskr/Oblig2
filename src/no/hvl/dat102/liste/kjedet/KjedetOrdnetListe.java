@@ -77,6 +77,7 @@ public class KjedetOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 
 	@Override
 	public boolean erTom() {
+
 		return antall == 0;
 	}
 
