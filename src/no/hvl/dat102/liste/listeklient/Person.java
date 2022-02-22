@@ -48,11 +48,34 @@ public class Person implements Comparable<Person> {
 		return (foedselsaar + "\t" + etternavn + ", " + fornavn);
 	}
 
+	/**
+	 * Se Klassen Person i prosjektet ListeOrdnetU. Ferdigstill metoden compareTo. Metoden
+	 * skal sammenligne to Person-objekter med hensyn på fødselsår. Vi ønsker at den eldste
+	 * kommer først (compareTo returnerer et tall < 0). Ved sammenligning av like fødselsår skal
+	 * du sammenligne etternavn og deretter eventuelt fornavn (ønsker ordnet i alfabetisk
+	 * rekkefølge). Tips: Se gjerne compareTo i klassen Lag, i prosjektet ListeOrdnetU.
+	 * @param denAndrePersonen Personen metoden sammenligner mot
+	 * @return Differansen
+	 */
 	public int compareTo(Person denAndrePersonen) {
 		int resultat = 0;
-		//... Fyll ut
-		//Kall p� compareTo i Stringklassen
+
+		//Sammenligner fødselsår
+		if (foedselsaar < denAndrePersonen.foedselsaar) {
+			resultat = -1;
+		}
+		else if (foedselsaar > denAndrePersonen.foedselsaar) {
+			resultat = 1;
+		}
+		//Sammenligner etternavn
+		if (resultat == 0) {
+			resultat = etternavn.compareTo(denAndrePersonen.etternavn);
+		}
+		//Sammenligner fornavn
+		if (resultat == 0) {
+			resultat = fornavn.compareTo(denAndrePersonen.fornavn);
+		}
 		return resultat;
-	}//
+	}
 
 }// class

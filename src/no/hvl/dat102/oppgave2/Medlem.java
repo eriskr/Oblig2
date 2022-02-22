@@ -18,6 +18,7 @@ public class Medlem {
 
     public Medlem (String navn) {
         this.navn = navn;
+        hobbyer = null;
         statusIndeks = -1;
     }
 
