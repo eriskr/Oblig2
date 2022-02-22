@@ -9,6 +9,6 @@ public class TabellOrdnetListeTest extends OrdnetListeADTTest {
 
     @Override
     protected OrdnetListeADT<Integer> reset() {
-        return new TabellOrdnetListe<Integer>();
+        return new TabellOrdnetListe<>();
     }
 }

@@ -3,6 +3,7 @@ package no.hvl.dat102.adt;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.EmptyStackException;
@@ -22,7 +23,6 @@ public abstract class ListeADTTest {
      * @author Ole Olsen
      */
     private OrdnetListeADT<Integer> liste;
-    // TODO mangler en god del!
 
     // Testdata
     private Integer e0 = 1;
@@ -36,8 +36,6 @@ public abstract class ListeADTTest {
 
     /**
      * Opprett en tom liste for hver test.
-     *
-     *
      */
     @BeforeEach
     public final void setup() {
@@ -73,12 +71,16 @@ public abstract class ListeADTTest {
 
     /**
      * Tester ordning ikke-avtagende
-     *
      */
     @Test
-    public final void viseOrdnetIkkeAvtagende() {
-        // TODO... Fyll ut
-        // ... Legg til elementer og bruk fjernFoerste
+    public final void viseOrdnetIkkeAvtagende() { //TODO sjekk for både tabell og kjedet
+        liste.leggTil(e0);
+        liste.leggTil(e1);
+        liste.leggTil(e2);
+
+        assertEquals(e0, liste.fjernFoerste());
+        assertEquals(e1, liste.fjernFoerste());
+        assertEquals(e2, liste.fjernFoerste());
     }
 
     @Test
@@ -106,12 +108,18 @@ public abstract class ListeADTTest {
      */
     @Test
     public final void leggTilOgfjernMedDuplikater() {
-        try {
-            // TODO... Fyll ut med å legge til passende elementer
 
+        liste.leggTil(e0);
+        liste.leggTil(e1);
+        liste.leggTil(e1);
+
+        try {
             assertEquals(e0, liste.fjern(e0));
             assertEquals(e1, liste.fjern(e1));
             assertEquals(e4, liste.fjern(e4));
+            assertEquals(e0, liste.fjern(e0));
+            assertEquals(e1, liste.fjern(e1));
+            assertEquals(e1, liste.fjern(e1));
             assertEquals(e1, liste.fjern(e1));
             assertEquals(e2, liste.fjern(e2));
             assertEquals(e3, liste.fjern(e3));
@@ -155,11 +163,17 @@ public abstract class ListeADTTest {
     }
 
     /**
-     * Tester om leggTil-fjern p� en tom liste gir en tom liste.
+     * Tester om leggTil-fjern på en tom liste gir en tom liste.
      */
     @Test
     public final void leggTilFjernErTom() {
-        // ...TODO Fyll ut. Legg inn elementer og fjern de
+
+        liste.leggTil(e0);
+        liste.leggTil(e1);
+
+        liste.fjern(e0);
+        liste.fjern(e1);
+        assertTrue(liste.erTom());
     }
 
     /**

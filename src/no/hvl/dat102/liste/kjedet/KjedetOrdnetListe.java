@@ -8,7 +8,7 @@ import java.util.IllformedLocaleException;
 import java.util.Iterator;
 
 /**
- * Sorterer fra størst til minst
+ * Sorterer fra minst til størst
  * @param <T> elementypen
  */
 public class KjedetOrdnetListe<T extends Comparable<T>> implements OrdnetListeADT<T> {
@@ -88,48 +88,90 @@ public class KjedetOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 
 	@Override
 	public void leggTil(T element) {
-
-		LinearNode<T> forrige = foerste;
-		LinearNode<T> node = foerste.getNeste();
 		LinearNode<T> ny = new LinearNode<>(element);
-
-		for (int i = 0; i < antall; i++) {
-			if (node.getElement().compareTo(element) <= 0) {
-				forrige.setNeste(ny);
-				ny.setNeste(node);
-				antall++;
+		if (erTom()) {
+			foerste = ny;
+		} else {
+			if (foerste.getElement().compareTo(element) < 0) {
+				ny.setNeste(foerste);
+				foerste = ny;
 			}
+			else {
+				LinearNode<T> forrige = foerste;
+				LinearNode<T> node = foerste.getNeste();
 
+				for (int i = 0; i < antall-1; i++) {
+					if (node.getElement().compareTo(element) < 0) {
+						forrige.setNeste(ny);
+						ny.setNeste(node);
+					}
+				}
+			}
 		}
-
-
-
+		antall++;
 	}
 
 	@Override
 	public T fjern(T element) {
-		T svar = null;
-		LinearNode<T> forrige = null, denne = foerste;
-		while (denne != null && element.compareTo(denne.getElement()) > 0) {
-			forrige = denne;
-			denne = denne.getNeste();
+		T fjernet = null;
+		if (erTom()) {
+			return fjernet;
 		}
-		if (denne != null && element.equals(denne.getElement())) { // funnet
-			antall--;
-			svar = denne.getElement();
-			if (forrige == null) { // Første element
-				foerste = foerste.getNeste();
-				if (foerste == null) { // Tom liste
-					siste = null;
+
+		boolean found = false;
+		if (foerste.getElement().equals(element)) {
+			fjernet = foerste.getElement();
+			foerste = foerste.getNeste();
+			found = true;
+		}
+		else {
+			LinearNode<T> previous = foerste, node = previous.getNeste();
+			for (int i = 1; i < antall && !found && element.compareTo(previous.getElement()) >= 0; i++) { //Vi bruker compareTo for å stoppe hvis vi passerer elementet vi skal fjerne
+				if (node.getElement().equals(element)) {
+					fjernet = node.getElement();
+					found =  true;
+					previous.setNeste(node.getNeste());
+					if (previous.getNeste() == null) {
+						siste = previous;
+					}
 				}
-			} else { // Inni listen eller bak
-				forrige.setNeste(denne.getNeste());
-				if (denne == siste) { // bak
-					siste = forrige;
+				else {
+					previous = previous.getNeste();
+					node = node.getNeste();
 				}
 			}
-		} // ikke-funn
-		return svar;
+		}
+
+		if (found) {
+			antall--;
+			if (erTom()) {
+				siste = null;
+			}
+		}
+		return fjernet;
+
+//		T svar = null;
+//		LinearNode<T> forrige = null, denne = foerste;
+//		while (denne != null && element.compareTo(denne.getElement()) > 0) {
+//			forrige = denne;
+//			denne = denne.getNeste();
+//		}
+//		if (denne != null && element.equals(denne.getElement())) { // funnet
+//			antall--;
+//			svar = denne.getElement();
+//			if (forrige == null) { // Første element
+//				foerste = foerste.getNeste();
+//				if (foerste == null) { // Tom liste
+//					siste = null;
+//				}
+//			} else { // Inni listen eller bak
+//				forrige.setNeste(denne.getNeste());
+//				if (denne == siste) { // bak
+//					siste = forrige;
+//				}
+//			}
+//		} // ikke-funn
+//		return svar;
 	}
 
 	@Override
