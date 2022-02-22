@@ -101,7 +101,7 @@ public class KjedetOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 				LinearNode<T> forrige = foerste;
 				LinearNode<T> node = foerste.getNeste();
 
-				while (node != null && node.getElement().compareTo(element) > 0) {
+				while (node != null && node.getElement().compareTo(element) < 0) {
 					forrige = node;
 					node = node.getNeste();
 				}
