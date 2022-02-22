@@ -45,12 +45,13 @@ public class KjedetOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 			fjernFoerste();
 			return resultat;
 		}
-			LinearNode<T> node = foerste;
+		LinearNode<T> node = foerste;
 		for (int i = 0; i < antall-2; i++) {
 			node = node.getNeste();
 		}
 		siste = node;
-
+		node.setNeste(null);
+		antall--;
 		return resultat;
 	}
 

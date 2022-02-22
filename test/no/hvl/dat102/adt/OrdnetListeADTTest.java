@@ -77,10 +77,10 @@ public abstract class OrdnetListeADTTest {
         liste.leggTil(e2);
         liste.leggTil(e3);
 
-        assertEquals(e3, liste.fjernFoerste());
-        assertEquals(e2, liste.fjernFoerste());
-        assertEquals(e1, liste.fjernFoerste());
         assertEquals(e0, liste.fjernFoerste());
+        assertEquals(e1, liste.fjernFoerste());
+        assertEquals(e2, liste.fjernFoerste());
+        assertEquals(e3, liste.fjernFoerste());
     }
 
     @Test
