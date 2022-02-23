@@ -28,12 +28,9 @@ public class Parentessjekker implements ParentessjekkerADT {
 
     @Override
     public boolean erPar(char venstre, char hogre) {
-        if (venstre == '(' && hogre == ')' ||
+        return venstre == '(' && hogre == ')' ||
                 venstre == '[' && hogre == ']' ||
-                venstre == '{' && hogre == '}') {
-            return true;
-        }
-        return false;
+                venstre == '{' && hogre == '}';
     }
 
     @Override
