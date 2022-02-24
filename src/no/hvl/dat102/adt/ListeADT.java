@@ -1,6 +1,6 @@
 package no.hvl.dat102.adt;
 
-import no.hvl.dat102.exception.EmptyCollectionException;
+import no.hvl.dat102.exceptions.EmptyCollectionException;
 
 /**
  * Definerer interface til en generell liste. Spesielle typer av lister vil bli

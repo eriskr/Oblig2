@@ -2,7 +2,7 @@ package no.hvl.dat102.adt;
 
 import java.util.Iterator;
 
-import no.hvl.dat102.exception.EmptyCollectionException;
+import no.hvl.dat102.exceptions.EmptyCollectionException;
 
 public interface MengdeADT<T> {
 	// Interface som definerer alle operasjoner i en ADT

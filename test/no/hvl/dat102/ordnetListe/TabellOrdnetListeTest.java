@@ -1,0 +1,13 @@
+package no.hvl.dat102.ordnetListe;
+
+import no.hvl.dat102.adt.OrdnetListeADT;
+import no.hvl.dat102.adt.OrdnetListeADTTest;
+import no.hvl.dat102.oving5.oppgave1.tabell.TabellOrdnetListe;
+
+public class TabellOrdnetListeTest extends OrdnetListeADTTest {
+
+    @Override
+    protected OrdnetListeADT<Integer> reset() {
+        return new TabellOrdnetListe<>();
+    }
+}

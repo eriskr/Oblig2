@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import no.hvl.dat102.exception.EmptyCollectionException;
+import no.hvl.dat102.exceptions.EmptyCollectionException;
 
 public abstract class OrdnetListeADTTest {
 

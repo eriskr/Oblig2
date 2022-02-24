@@ -1,6 +1,6 @@
 package no.hvl.dat102.adt;
 
-import no.hvl.dat102.exception.EmptyCollectionException;
+import no.hvl.dat102.exceptions.EmptyCollectionException;
 
 public interface DobbelKjedetOrdnetListeADT<T> {
 
