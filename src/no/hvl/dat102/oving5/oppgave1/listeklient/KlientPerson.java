@@ -8,6 +8,8 @@ import javax.swing.*;
 
 public class KlientPerson {
 
+	// Oppgave c
+
 	public static void main(String[] args) {
 		
 		OrdnetListeADT<Person> kjedetListe = new KjedetOrdnetListe<>();
@@ -22,12 +24,12 @@ public class KlientPerson {
 		tabelListe.leggTil(lesInnPerson());
 		
 		while(!kjedetListe.erTom()) {
-			System.out.println(kjedetListe.fjernSiste());
+			System.out.println(kjedetListe.fjernFoerste());
 		}
 		System.out.println();
 
 		while(!tabelListe.erTom()) {
-			System.out.println(tabelListe.fjernSiste());
+			System.out.println(tabelListe.fjernFoerste());
 		}
 	}
 
@@ -41,7 +43,7 @@ public class KlientPerson {
 		do {
 			ok = true;
 			try {
-				fodselsaar = Integer.parseInt(JOptionPane.showInputDialog("F�dsels�r:"));
+				fodselsaar = Integer.parseInt(JOptionPane.showInputDialog("Fødselsår:"));
 			}
 			catch (NumberFormatException e) {
 				ok = false;

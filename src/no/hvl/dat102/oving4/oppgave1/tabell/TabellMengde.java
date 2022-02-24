@@ -10,7 +10,7 @@ import no.hvl.dat102.oving4.oppgave1.kjedet.KjedetMengde;
 
 public class TabellMengde<T> implements MengdeADT<T>, Iterable<T> {
 	// ADT-en Mengde implementert som tabell
-	//
+
 	private final static Random tilf = new Random();
 	private final static int STDK = 100;
 	private int antall;
@@ -71,9 +71,6 @@ public class TabellMengde<T> implements MengdeADT<T>, Iterable<T> {
 
 	@Override
 	public T fjern(T element) {
-		//TODO
-		// S�ker etter og fjerner element. Returnerer null-ref ved ikke-funn
-
 		if (erTom())
 			throw new EmptyCollectionException("mengde");
 
@@ -103,7 +100,7 @@ public class TabellMengde<T> implements MengdeADT<T>, Iterable<T> {
 		return (funnet);
 	}
 	
-	/*
+	/**
 	 * Når vi overkjører (override) equals- meteoden er det anbefalt at vi også
 	 * overkjører hascode-metoden da en del biblioterker burker hascode sammen med
 	 * equals. Vi kommer tilbake til forklaring og bruk av hascode senere i faget.
@@ -117,38 +114,36 @@ public class TabellMengde<T> implements MengdeADT<T>, Iterable<T> {
 		return result;
 	}
 
+	// Oppgave a
 	@Override
 	public boolean equals(Object m2) {
 
 		if (this == m2){
 			return true;
 		}
-
 		if (m2 == null){
 			return false;
 		}
-
 		if (getClass() != m2.getClass()) {
 			return false;
 		}
-		boolean likeMengder = true;
 
+		@SuppressWarnings("unchecked")
+		MengdeADT<T> tab1 = (TabellMengde<T>) m2;
 
-		MengdeADT<T> tab1= (KjedetMengde<T>) m2;
-		if (this.antall != tab1.antall()) {
-			likeMengder = false;
-		} else {
-			likeMengder = true;
+		if (this.antall == tab1.antall()) {
+			boolean likeMengder = true;
+
 			Iterator<T> teller = tab1.oppramser();
 			while (teller.hasNext() && likeMengder) {
 				T element = teller.next();
+
 				if (!this.inneholder(element)) {
 					likeMengder = false;
 				}
 			}
 			return likeMengder;
 		}
-
 		return false;
 	}
 
@@ -160,7 +155,9 @@ public class TabellMengde<T> implements MengdeADT<T>, Iterable<T> {
 			leggTil(teller.next());
 	}
 
-	/*
+	// Oppgave c
+
+	/**
 	 * Denne versjonen av unionen er lite effektiv
 	 * 
 	 * @Override public MengdeADT<T> union(MengdeADT<T> m2) { TabellMengde<T> begge
@@ -171,7 +168,6 @@ public class TabellMengde<T> implements MengdeADT<T>, Iterable<T> {
 	 * (MengdeADT<T>)begge; }
 	 */
 	@Override
-
 	public MengdeADT<T> union(MengdeADT<T> m2) {
 
 		MengdeADT<T> begge = new TabellMengde<>();
@@ -262,10 +258,6 @@ public class TabellMengde<T> implements MengdeADT<T>, Iterable<T> {
 	@Override
 	public Iterator<T> iterator() {
 		return new TabellIterator<>(tab, antall);
-	}
-
-	public T[] getTab () {
-		return tab;
 	}
 
 	public T getElement(int i) {

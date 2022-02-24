@@ -39,19 +39,17 @@ public class Parentessjekker implements ParentessjekkerADT {
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
 
-            if (erParentes(c)) {
-                if (erVenstreparentes(c)) {
-                    stabel.push(c);
-                }
-                else { // erHoyreparentes
-                    try {
-                        if (!erPar(stabel.pop(), c)) {
-                            return false;
-                        }
-                    }
-                    catch (EmptyCollectionException e) { //Hvis stabel er tom
+            if (erVenstreparentes(c)) {
+                stabel.push(c);
+            }
+            else if (erHogreparentes(c)){
+                try {
+                    if (!erPar(stabel.pop(), c)) {
                         return false;
                     }
+                }
+                catch (EmptyCollectionException e) { //Hvis stabel er tom
+                    return false;
                 }
             }
         }

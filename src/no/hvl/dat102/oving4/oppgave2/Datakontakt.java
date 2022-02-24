@@ -4,10 +4,14 @@ import no.hvl.dat102.oving4.oppgave1.tabell.TabellMengde;
 
 public class Datakontakt {
 
-    private TabellMengde<Medlem> medlemmer;
+    private final TabellMengde<Medlem> medlemmer;
 
     public Datakontakt(int antall) {
         medlemmer = new TabellMengde<>(antall);
+    }
+
+    public Datakontakt() {
+        medlemmer = new TabellMengde<>();
     }
 
     /**
@@ -40,18 +44,18 @@ public class Datakontakt {
      */
     public int finnPartnerFor(Medlem medlem) {
 
-        int medlemIndeks = -1;
+        int medlemIndeks, indeksM = -1;
 
         for (Medlem m : medlemmer) {
             if (m.passerTil(medlem)) {
-                int indeksM = (finnMedlemsIndeks(m.getNavn()));
+                indeksM = (finnMedlemsIndeks(m.getNavn()));
                 medlemIndeks = (finnMedlemsIndeks(medlem.getNavn()));
 
                 m.setStatusIndeks(medlemIndeks);
                 medlem.setStatusIndeks(indeksM);
             }
         }
-        return medlemIndeks;
+        return indeksM;
     }
 
     public void tilbakestillStatusIndeks(String medlemsnavn) {

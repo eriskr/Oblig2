@@ -48,6 +48,8 @@ public class Person implements Comparable<Person> {
 		return (foedselsaar + "\t" + etternavn + ", " + fornavn);
 	}
 
+	// Oppgave a
+
 	/**
 	 * Se Klassen Person i prosjektet ListeOrdnetU. Ferdigstill metoden compareTo. Metoden
 	 * skal sammenligne to Person-objekter med hensyn på fødselsår. Vi ønsker at den eldste

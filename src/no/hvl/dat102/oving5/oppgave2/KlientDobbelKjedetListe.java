@@ -2,6 +2,8 @@ package no.hvl.dat102.oving5.oppgave2;
 
 public class KlientDobbelKjedetListe {
 
+    // Oppgave d
+
     public static void main(String[] args) {
         String ord[] = { "o", "a", "s", "m", "e", "k", "c" };
 

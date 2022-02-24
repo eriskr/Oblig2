@@ -12,6 +12,8 @@ import org.junit.jupiter.api.Test;
  */
 public abstract class MengdeADTTest {
 
+    // Oppgave 1d
+
     protected abstract MengdeADT<Integer> reset();
 
     protected MengdeADT<Integer> mengde1;

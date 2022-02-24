@@ -131,6 +131,7 @@ public class KjedetMengde<T> implements MengdeADT<T>, Iterable<T> {
 		return result;
 	}
 
+	// Oppgave a
 	@Override
 	public boolean equals(Object ny) {
 
@@ -143,22 +144,23 @@ public class KjedetMengde<T> implements MengdeADT<T>, Iterable<T> {
 		if (getClass() != ny.getClass()) {
 			return false;
 		} 
-			boolean likeMengder = true;
+
+			@SuppressWarnings("unchecked")
 			MengdeADT<T> m2 = (KjedetMengde<T>) ny;
-			if (this.antall != m2.antall()) {
-				likeMengder = false;
-			} else {
-				likeMengder = true;
+
+			if (this.antall == m2.antall()) {
+				boolean likeMengder = true;
+
 				Iterator<T> teller = m2.oppramser();
 				while (teller.hasNext() && likeMengder) {
 					T element = teller.next();
-					if (!this.inneholder(element)) {
+
+					if (!inneholder(element)) {
 						likeMengder = false;
 					}
 				}
 				return likeMengder;
 			}
-		
 		return false;
 	}
 
@@ -171,6 +173,8 @@ public class KjedetMengde<T> implements MengdeADT<T>, Iterable<T> {
 	public int antall() {
 		return antall;
 	}
+
+	//Oppgave b
 
 	@Override
 	public MengdeADT<T> union(MengdeADT<T> m2) {
@@ -186,11 +190,11 @@ public class KjedetMengde<T> implements MengdeADT<T>, Iterable<T> {
 		Iterator<T> teller = m2.oppramser();
 		while (teller.hasNext()) {
 			element = teller.next();
+
 			if (!this.inneholder(element)) {// tester mot "konstant" mengde
 				((KjedetMengde<T>) begge).settInn(element);
 			}
 		}
-
 		return begge;
 	}//
 
@@ -205,7 +209,6 @@ public class KjedetMengde<T> implements MengdeADT<T>, Iterable<T> {
 				}
 			}
 		}
-
 		return snittM;
 	}
 
@@ -218,7 +221,6 @@ public class KjedetMengde<T> implements MengdeADT<T>, Iterable<T> {
 				((KjedetMengde<T>) differensM).settInn(el);
 			}
 		}
-
 		return differensM;
 	}
 
@@ -250,7 +252,7 @@ public class KjedetMengde<T> implements MengdeADT<T>, Iterable<T> {
 	}
 
 
-	public String toString(){
+	public String toString() {
 
 		String resultat = "<";
 

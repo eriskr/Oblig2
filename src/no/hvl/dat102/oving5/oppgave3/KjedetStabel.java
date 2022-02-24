@@ -9,7 +9,6 @@ public class KjedetStabel<T> implements StabelADT<T> {
 
     public KjedetStabel() {
         topp = null;
-
     }
 
     @Override

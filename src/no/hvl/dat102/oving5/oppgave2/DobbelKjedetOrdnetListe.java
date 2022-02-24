@@ -8,6 +8,8 @@ public class DobbelKjedetOrdnetListe<T extends Comparable<T>> implements DobbelK
     private DobbelNode<T> siste;
     private int antall;
 
+    // Oppgave a
+
     public DobbelKjedetOrdnetListe(T minVerdi, T maksVerdi) {
         foerste = new DobbelNode<>(minVerdi);
         siste = new DobbelNode<>(maksVerdi);
@@ -37,16 +39,15 @@ public class DobbelKjedetOrdnetListe<T extends Comparable<T>> implements DobbelK
         if (erTom())
             throw new EmptyCollectionException("dobbelkjedet ordnet liste er tom");
         DobbelNode<T> aktuell = finn(el);
-        if (aktuell != null) {// returner og slett
+        if (aktuell != null) { // returner og slett
             resultat = aktuell.getElement();
             aktuell.getForrige().setNeste(aktuell.getNeste());
             aktuell.getNeste().setForrige(aktuell.getForrige());
         }
         return resultat;
-
     }
 
-    /*
+    /**
      * Returnerer referansen til noden hvis el fins, ellers returneres
      * null-referansen
      */
@@ -62,6 +63,8 @@ public class DobbelKjedetOrdnetListe<T extends Comparable<T>> implements DobbelK
         }
         return null;
     }
+
+    // Oppgave b
 
     public boolean fins(T el) {
         DobbelNode<T> node = foerste.getNeste();
@@ -98,6 +101,8 @@ public class DobbelKjedetOrdnetListe<T extends Comparable<T>> implements DobbelK
 
         return resultat;
     }
+
+    // Oppgave c
 
     public void visListe() {
         System.out.println(this);

@@ -1,6 +1,7 @@
 package no.hvl.dat102.oving4.oppgave2;
 
 import no.hvl.dat102.adt.MengdeADT;
+import no.hvl.dat102.oving4.oppgave1.kjedet.KjedetMengde;
 
 import java.util.Iterator;
 
@@ -38,7 +39,6 @@ public class Medlem {
         }
 
         Iterator<Hobby> m1 = hobbyer.oppramser(), m2 = medlem2.hobbyer.oppramser();
-
         while (m1.hasNext()) {
             while (m2.hasNext()) {
                 if (!m1.next().equals(m2.next()) ) {
@@ -47,6 +47,13 @@ public class Medlem {
             }
         }
         return true;
+    }
+
+    public void leggTilHobby(Hobby h) {
+        if (hobbyer == null) {
+            hobbyer = new KjedetMengde<>();
+        }
+        hobbyer.leggTil(h);
     }
 
     public String getNavn() {

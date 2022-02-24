@@ -117,43 +117,6 @@ public class KjedetOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 
 	@Override
 	public T fjern(T element) {
-//		T fjernet = null;
-//		if (erTom()) {
-//			return fjernet;
-//		}
-//
-//		boolean found = false;
-//		if (foerste.getElement().equals(element)) {
-//			fjernet = foerste.getElement();
-//			foerste = foerste.getNeste();
-//			found = true;
-//		}
-//		else {
-//			LinearNode<T> previous = foerste, node = previous.getNeste();
-//			for (int i = 1; i < antall && !found && element.compareTo(previous.getElement()) >= 0; i++) { //Vi bruker compareTo for å stoppe hvis vi passerer elementet vi skal fjerne
-//				if (node.getElement().equals(element)) {
-//					fjernet = node.getElement();
-//					found =  true;
-//					previous.setNeste(node.getNeste());
-//					if (previous.getNeste() == null) {
-//						siste = previous;
-//					}
-//				}
-//				else {
-//					previous = previous.getNeste();
-//					node = node.getNeste();
-//				}
-//			}
-//		}
-//
-//		if (found) {
-//			antall--;
-//			if (erTom()) {
-//				siste = null;
-//			}
-//		}
-//		return fjernet;
-
 		T svar = null;
 		LinearNode<T> forrige = null, denne = foerste;
 		while (denne != null && element.compareTo(denne.getElement()) > 0) {
