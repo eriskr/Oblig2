@@ -4,9 +4,6 @@ import no.hvl.dat102.LinearNode;
 import no.hvl.dat102.adt.OrdnetListeADT;
 import no.hvl.dat102.exception.EmptyCollectionException;
 
-import java.util.IllformedLocaleException;
-import java.util.Iterator;
-
 /**
  * Sorterer fra minst til størst
  * @param <T> elementypen

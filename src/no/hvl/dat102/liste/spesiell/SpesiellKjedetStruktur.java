@@ -1,5 +1,7 @@
 package no.hvl.dat102.liste.spesiell;
 
+import no.hvl.dat102.LinearNode;
+
 public class SpesiellKjedetStruktur<T> {
 	private int antall; // antall elementer i mengden
 	private LinearNode<T> start;
