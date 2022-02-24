@@ -25,6 +25,7 @@ public class RekursivMetode {
         return resultat;
     }
 
+    // c
     public static int f(int n) {
         if (n < 2) {
             return n;
@@ -33,15 +34,16 @@ public class RekursivMetode {
         return f(n-1) + f(n-2);
     }
 
+    // d
     public static int fi(int n) {
-        int ledd1 = 1, ledd2 = 0;
+        int sum2 = 0, sum = 1;
 
         for (int i = 2; i <= n; i++) {
-            ledd1 = ledd1 + ledd2;
-            ledd2 = ledd1 + ledd2;
+            sum += sum2;
+            sum2 = sum - sum2;
         }
 
-        return ledd1 + ledd2;
+        return sum;
     }
 
     public static void main(String[] args) {

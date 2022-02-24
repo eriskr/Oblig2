@@ -4,7 +4,6 @@ import no.hvl.dat102.mengde.kjedet.KjedetMengde;
 
 public class DatakontaktKlient {
     public static void main(String[] args) {
-        //TODO test metodene i datakontakt og medlem
         Datakontakt dk = new Datakontakt(5);
         Medlem Lars = new Medlem("Lars");
         Medlem Kari = new Medlem("Kari");
