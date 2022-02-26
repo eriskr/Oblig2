@@ -1,5 +1,6 @@
 package no.hvl.dat102.oving4.oppgave2;
 
+import no.hvl.dat102.adt.MengdeADT;
 import no.hvl.dat102.oving4.oppgave1.tabell.TabellMengde;
 
 public class Datakontakt {
@@ -51,19 +52,63 @@ public class Datakontakt {
                 indeksM = (finnMedlemsIndeks(m.getNavn()));
                 medlemIndeks = (finnMedlemsIndeks(medlem.getNavn()));
 
-                m.setStatusIndeks(medlemIndeks);
-                medlem.setStatusIndeks(indeksM);
+                setStatusIndeks(m, medlem, indeksM, medlemIndeks);
             }
         }
         return indeksM;
     }
 
+    public int finnBestePartnerFor(Medlem m) {
+
+        int besteMatch = -1, teller = 0;
+        double besteVerdi = 0;
+
+        for (Medlem medlem : medlemmer) {
+            if (!medlem.equals(m)) {
+
+                MengdeADT<Hobby> snitt = medlem.getHobbyer().snitt(m.getHobbyer());
+
+                double antallEkstraHobbyerMedlem = medlem.getHobbyer().antall() - snitt.antall(),
+
+                        antallEkstraHobbyerM = m.getHobbyer().antall() - snitt.antall(),
+
+                        gjeldende = snitt.antall() - (antallEkstraHobbyerMedlem * antallEkstraHobbyerM) /
+                                (snitt.antall() + antallEkstraHobbyerMedlem + antallEkstraHobbyerM);
+
+                if (snitt.antall() != 0 && gjeldende > besteVerdi) {
+                    besteVerdi = gjeldende;
+                    besteMatch = teller;
+                }
+            }
+            teller++;
+        }
+        if (besteMatch != -1) {
+            setStatusIndeks(m, medlemmer.getElement(besteMatch), getPosisjon(m), besteMatch);
+        }
+        return besteMatch;
+    }
+
+    private void setStatusIndeks(Medlem m1, Medlem m2, int i1, int i2) {
+        m1.setStatusIndeks(i2);
+        m2.setStatusIndeks(i1);
+    }
+
+    private int getPosisjon(Medlem m) {
+        for (int i = 0; i < medlemmer.antall(); i++) {
+            if (m.equals(medlemmer.getElement(i))) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public void tilbakestillStatusIndeks(String medlemsnavn) {
         int m1 = finnMedlemsIndeks(medlemsnavn);
-        if (m1 != -1) {
+        Medlem medlem1 = medlemmer.getElement(m1);
+
+        if (medlem1.getStatusIndeks() != -1) {
             int m2 = medlemmer.getElement(m1).getStatusIndeks();
-            medlemmer.getElement(m1).setStatusIndeks(-1);
-            medlemmer.getElement(m2).setStatusIndeks(-1);
+            setStatusIndeks(medlem1, medlemmer.getElement(m2), -1, -1);
         }
     }
 

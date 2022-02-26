@@ -12,7 +12,7 @@ public class Tekstgrensesnitt {
     public static Medlem lesMedlem() {
         String navn = JOptionPane.showInputDialog("Navn");
         MengdeADT<Hobby> hobbyer = new KjedetMengde<>();
-        String[] stringHobbyer = JOptionPane.showInputDialog("Hobbyer, skill med mellomrom").split("\\W");
+        String[] stringHobbyer = JOptionPane.showInputDialog("Hobbyer, skill med mellomrom").split("\\W+");
 
         for (String s : stringHobbyer) {
             Hobby hobby = new Hobby(s);
@@ -51,7 +51,8 @@ public class Tekstgrensesnitt {
             int m2 = m.getStatusIndeks();
 
             if (m2 != -1 && !skrevetUt[i]) {
-                System.out.printf("%s %18s %n", m.getNavn() + " og " + medlemmer.getElement(m2).getNavn(), m.getHobbyer());
+                Medlem medlem2 = medlemmer.getElement(m2);
+                System.out.printf("%s %18s %n", m.getNavn() + " og " + medlem2.getNavn(), m.getHobbyer().snitt(medlem2.getHobbyer()));
                 skrevetUt[m2] = true;
                 antallPar++;
             }
