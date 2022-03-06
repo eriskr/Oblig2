@@ -3,6 +3,11 @@ package no.hvl.dat102.oving5.oppgave3;
 import no.hvl.dat102.adt.ParentessjekkerADT;
 import no.hvl.dat102.exceptions.EmptyCollectionException;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Scanner;
+
 public class Parentessjekker implements ParentessjekkerADT {
 
     private final KjedetStabel<Character> stabel;
@@ -61,9 +66,11 @@ public class Parentessjekker implements ParentessjekkerADT {
         System.out.println(sjekker.erParentes(')'));
         System.out.println(sjekker.erParentes('K'));
 
-        System.out.println(sjekker.erBalansert("[(Hei)]"));
-        System.out.println(sjekker.erBalansert("{()]("));
+//        System.out.println(sjekker.erBalansert("[(Hei)]"));
+//        System.out.println(sjekker.erBalansert("{()]("));
 
-        System.out.println(sjekker.erBalansert("Dette er en tekst (som ikke har riktige paranteser(."));
+//        System.out.println(sjekker.erBalansert("Dette er en tekst (som ikke har riktige paranteser(."));
+        ParentessjekkerUtvidet sjekkerUtvidet = new ParentessjekkerUtvidet();
+        sjekkerUtvidet.erBalanserUtvidet();
     }
 }

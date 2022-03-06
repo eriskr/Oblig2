@@ -13,7 +13,7 @@ public class KjedetStabel<T> implements StabelADT<T> {
 
     @Override
     public void push(T el) {
-        LinearNode<T> nynode = new LinearNode<T>(el);
+        LinearNode<T> nynode = new LinearNode<>(el);
         nynode.setNeste(topp);
         topp = nynode;
 
@@ -42,4 +42,14 @@ public class KjedetStabel<T> implements StabelADT<T> {
         return (topp == null);
     }
 
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        LinearNode<T> node = topp;
+        while (node != null) {
+            s.append(node.getElement()).append(" ");
+            node = node.getNeste();
+        }
+        return s.toString();
+    }
 }
